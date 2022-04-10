@@ -14,11 +14,36 @@
   }
   ```
 */
-import { MailIcon, PhoneIcon } from '@heroicons/react/outline'
+import React, { useRef } from "react";
+
+import { MailIcon, PhoneIcon } from "@heroicons/react/outline";
+import emailjs from "@emailjs/browser";
 
 export default function Example() {
+  const form = useRef();
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs
+      .sendForm(
+        "service_0cykgqo",
+        "template_330lf8g",
+        form.current,
+        "B0vQKvcBEw4Zv4kDV"
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
+
+    e.target.reset();
+  };
   return (
-    <div className="bg-gray-100">
+    <div className="bg-gray-100" id="contact">
       <div className="max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
         <div className="relative bg-white shadow-xl">
           <h2 className="sr-only">Contact us</h2>
@@ -26,7 +51,10 @@ export default function Example() {
           <div className="grid grid-cols-1 lg:grid-cols-3">
             {/* Contact information */}
             <div className="relative overflow-hidden py-10 px-6 bg-indigo-700 sm:px-10 xl:p-12">
-              <div className="absolute inset-0 pointer-events-none sm:hidden" aria-hidden="true">
+              <div
+                className="absolute inset-0 pointer-events-none sm:hidden"
+                aria-hidden="true"
+              >
                 <svg
                   className="absolute inset-0 w-full h-full"
                   width={343}
@@ -122,23 +150,32 @@ export default function Example() {
                   </defs>
                 </svg>
               </div>
-              <h3 className="text-lg font-medium text-white">Contact information</h3>
+              <h3 className="text-lg font-medium text-white">
+                Contact information
+              </h3>
               <p className="mt-6 text-base text-indigo-50 max-w-3xl">
-                You can reach me through my email or my contact number. Otherwise fill up the form which will notify me about your need 
+                You can reach me through my email or my contact number.
+                Otherwise fill up the form which will notify me about your need
               </p>
               <dl className="mt-8 space-y-6">
                 <dt>
                   <span className="sr-only">Phone number</span>
                 </dt>
                 <dd className="flex text-base text-indigo-50">
-                  <PhoneIcon className="flex-shrink-0 w-6 h-6 text-indigo-200" aria-hidden="true" />
+                  <PhoneIcon
+                    className="flex-shrink-0 w-6 h-6 text-indigo-200"
+                    aria-hidden="true"
+                  />
                   <span className="ml-3">+(216) 58 609 473</span>
                 </dd>
                 <dt>
                   <span className="sr-only">Email</span>
                 </dt>
                 <dd className="flex text-base text-indigo-50">
-                  <MailIcon className="flex-shrink-0 w-6 h-6 text-indigo-200" aria-hidden="true" />
+                  <MailIcon
+                    className="flex-shrink-0 w-6 h-6 text-indigo-200"
+                    aria-hidden="true"
+                  />
                   <span className="ml-3">aminekallelhkust@gmail.com</span>
                 </dd>
               </dl>
@@ -205,10 +242,21 @@ export default function Example() {
 
             {/* Contact form */}
             <div className="py-10 px-6 sm:px-10 lg:col-span-2 xl:p-12">
-              <h3 className="text-lg font-medium text-gray-900">Send us a message</h3>
-              <form action="#" method="POST" className="mt-6 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
+              <h3 className="text-lg font-medium text-gray-900">
+                Send us a message
+              </h3>
+              <form
+                ref={form}
+                action="#"
+                method="POST"
+                className="mt-6 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8"
+                onSubmit={sendEmail}
+              >
                 <div>
-                  <label htmlFor="first-name" className="block text-sm font-medium text-gray-900">
+                  <label
+                    htmlFor="first-name"
+                    className="block text-sm font-medium text-gray-900"
+                  >
                     First name
                   </label>
                   <div className="mt-1">
@@ -222,7 +270,10 @@ export default function Example() {
                   </div>
                 </div>
                 <div>
-                  <label htmlFor="last-name" className="block text-sm font-medium text-gray-900">
+                  <label
+                    htmlFor="last-name"
+                    className="block text-sm font-medium text-gray-900"
+                  >
                     Last name
                   </label>
                   <div className="mt-1">
@@ -236,7 +287,10 @@ export default function Example() {
                   </div>
                 </div>
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-900">
+                  <label
+                    htmlFor="email"
+                    className="block text-sm font-medium text-gray-900"
+                  >
                     Email
                   </label>
                   <div className="mt-1">
@@ -251,7 +305,10 @@ export default function Example() {
                 </div>
                 <div>
                   <div className="flex justify-between">
-                    <label htmlFor="phone" className="block text-sm font-medium text-gray-900">
+                    <label
+                      htmlFor="phone"
+                      className="block text-sm font-medium text-gray-900"
+                    >
                       Phone
                     </label>
                     <span id="phone-optional" className="text-sm text-gray-500">
@@ -270,7 +327,10 @@ export default function Example() {
                   </div>
                 </div>
                 <div className="sm:col-span-2">
-                  <label htmlFor="subject" className="block text-sm font-medium text-gray-900">
+                  <label
+                    htmlFor="subject"
+                    className="block text-sm font-medium text-gray-900"
+                  >
                     Subject
                   </label>
                   <div className="mt-1">
@@ -284,7 +344,10 @@ export default function Example() {
                 </div>
                 <div className="sm:col-span-2">
                   <div className="flex justify-between">
-                    <label htmlFor="message" className="block text-sm font-medium text-gray-900">
+                    <label
+                      htmlFor="message"
+                      className="block text-sm font-medium text-gray-900"
+                    >
                       Message
                     </label>
                     <span id="message-max" className="text-sm text-gray-500">
@@ -298,7 +361,7 @@ export default function Example() {
                       rows={4}
                       className="py-3 px-4 block w-full shadow-sm text-gray-900 focus:ring-indigo-500 focus:border-indigo-500 border border-gray-300 rounded-md"
                       aria-describedby="message-max"
-                      defaultValue={''}
+                      defaultValue={""}
                     />
                   </div>
                 </div>
@@ -316,5 +379,5 @@ export default function Example() {
         </div>
       </div>
     </div>
-  )
+  );
 }

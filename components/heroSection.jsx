@@ -2,15 +2,16 @@ import { Fragment } from "react";
 import { Popover, Transition } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import { ChevronRightIcon } from "@heroicons/react/solid";
+import { Link } from "react-scroll";
 
 const navigation = [
-  { name: "Competences", href: "#" },
-  { name: "Academic Projects", href: "#" },
-  { name: "Contact-me", href: "#" },
-  
+  { name: "Competences", href: "skills" },
+  { name: "Academic Projects", href: "academics" },
+  { name: "Contact-me", href: "contact" },
 ];
 
 export default function Example() {
+  
   return (
     <div className="relative overflow-hidden">
       <Popover as="header" className="relative">
@@ -30,13 +31,17 @@ export default function Example() {
               </div>
               <div className="hidden space-x-14 md:flex md:w-full  md:justify-center md:ml-10">
                 {navigation.map((item) => (
-                  <a
+                  <Link
+                    to={item.href}
+                    spy={true}
+                    smooth={true}
+                    offset={50}
+                    duration={500}
                     key={item.name}
-                    href={item.href}
                     className="text-base font-medium text-white hover:text-gray-300"
                   >
                     {item.name}
-                  </a>
+                  </Link>
                 ))}
               </div>
             </div>
@@ -75,30 +80,18 @@ export default function Example() {
               <div className="pt-5 pb-6">
                 <div className="px-2 space-y-1">
                   {navigation.map((item) => (
-                    <a
+                    <Link
+                      to={item.href}
+                      spy={true}
+                      smooth={true}
+                      offset={50}
+                      duration={500}
                       key={item.name}
-                      href={item.href}
                       className="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-50"
                     >
                       {item.name}
-                    </a>
+                    </Link>
                   ))}
-                </div>
-                <div className="mt-6 px-5">
-                  <a
-                    href="#"
-                    className="block text-center w-full py-3 px-4 rounded-md shadow bg-indigo-600 text-white font-medium hover:bg-indigo-700"
-                  >
-                    Start free trial
-                  </a>
-                </div>
-                <div className="mt-6 px-5">
-                  <p className="text-center text-base font-medium text-gray-500">
-                    Existing customer?{" "}
-                    <a href="#" className="text-gray-900 hover:underline">
-                      Login
-                    </a>
-                  </p>
                 </div>
               </div>
             </div>
@@ -110,7 +103,7 @@ export default function Example() {
         <div className="pt-10 bg-gray-900 sm:pt-16 lg:pt-8 lg:pb-14 lg:overflow-hidden">
           <div className="mx-auto max-w-7xl lg:px-8">
             <div className="lg:grid lg:grid-cols-2 lg:gap-8">
-              <div className="mx-auto max-w-md px-4 sm:max-w-2xl sm:px-6 sm:text-center lg:px-0 lg:text-left lg:flex lg:items-center">
+              <div className="mx-auto max-w-md px-4 text-center sm:max-w-2xl sm:px-6 sm:text-center lg:px-0 lg:text-left lg:flex lg:items-center">
                 <div className="lg:py-24">
                   <h1 className="mt-4 text-4xl tracking-tight font-extrabold text-white sm:mt-5 sm:text-6xl lg:mt-6 xl:text-6xl">
                     <span className="block">Welcome to</span>
@@ -128,15 +121,22 @@ export default function Example() {
                     <form action="#" className="sm:max-w-xl sm:mx-auto lg:mx-0">
                       <div className="sm:flex justify-center">
                         <div className=" mt-3 sm:mt-0 sm:ml-3">
-                          <span className="relative inline-flex rounded-md shadow-sm">
-                            <button className="inline-flex items-center px-8 py-2 text-base leading-6 font-medium rounded-md text-gray-900 bg-white hover:text-rose-600 focus:border-rose-300 transition ease-in-out duration-150">
+                          <Link
+                            className="relative inline-flex rounded-md shadow-sm"
+                            to="contact"
+                            spy={true}
+                            smooth={true}
+                            offset={50}
+                            duration={500}
+                          >
+                            <button className="inline-flex items-center px-8 py-2 text-base leading-6 font-medium rounded-md text-gray-900 bg-white hover:text-indigo-600 focus:border-rose-300 transition ease-in-out duration-150">
                               Learn more
                             </button>
                             <span className="flex absolute h-3 w-3 top-0 right-0 -mt-1 -mr-1">
-                              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75"></span>
-                              <span className="relative inline-flex rounded-full h-3 w-3 bg-rose-500"></span>
+                              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
+                              <span className="relative inline-flex rounded-full h-3 w-3 bg-indigo-500"></span>
                             </span>
-                          </span>
+                          </Link>
                         </div>
                       </div>
                     </form>

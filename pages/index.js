@@ -13,7 +13,7 @@ const navigation = [
 
 function HomePage() {
   return (
-    <div>
+    <div className="flex flex-col">
       <Hero></Hero>
       <Features></Features>
       <AcademicProject></AcademicProject>
